@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CS165 Labs/CS165 Lab 2  ArrayLists.iml" filepath="$PROJECT_DIR$/../CS165 Labs/CS165 Lab 2  ArrayLists.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CS165 Labs/CS165 Lab 2 ArrayLists/CS165 Lab 2 ArrayLists.iml" filepath="$PROJECT_DIR$/../CS165 Labs/CS165 Lab 2 ArrayLists/CS165 Lab 2 ArrayLists.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CS165 Labs/CS165 Lab1 OOP/CS165 Lab1 OOP.iml" filepath="$PROJECT_DIR$/../CS165 Labs/CS165 Lab1 OOP/CS165 Lab1 OOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CS165 Labs/CS165 Labs.iml" filepath="$PROJECT_DIR$/../CS165 Labs/CS165 Labs.iml" />
+    </modules>
+  </component>
+</project>
