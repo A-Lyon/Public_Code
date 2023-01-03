@@ -9,7 +9,7 @@ public class ADSBRequest : MonoBehaviour
 {
 
 //might need to pay to get the official request URL and key. Currently produces invalid key from RapidAPI
-    private string ADSBexchangeURL = "https://adsbexchange-com1.p.rapidapi.com/v2/lat/39.6519/lon/-104.78197/dist/10/@APPID=ae868b1dbemshe3bdd87c853b8d0p1b4065jsnc0c8db4dccce";
+    private string ADSBexchangeURL = "https://adsbexchange-com1.p.rapidapi.com/v2/lat/39.6519/lon/-104.78197/dist/10/@APPID=";
 
     private string fortOpenSkyURL = "https://opensky-network.org/api/states/all?lamin=40.3804&lomin=-105.0934&lamax=40.6240&lomax=-105.1005";
             // upper bound for FoCo: 40.6240105262557, -105.10059208302569 
