@@ -16,8 +16,7 @@ public abstract class AQueue<E> implements IQueue<E> {
     // Instead of returning false, it throws an IllegalStateException.
     @Override
     public void add(E item){
-        boolean ret = offer(item);
-        if(!ret){
+        if(!offer(item)){
             throw new IllegalStateException();
         }
     }
