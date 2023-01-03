@@ -1,0 +1,2 @@
+/bin/ar qc libhw4.a CMakeFiles/hw4.dir/Phobic.cc.o
+/bin/ranlib libhw4.a

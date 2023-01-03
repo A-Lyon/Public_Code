@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/s/parsons/n/under/alyon/cs253/HW4/Phobic.h
+set
+-
+iostream
+-
+ostream
+-
+string
+-
+
+/s/parsons/n/under/alyon/cs253/HW4/test.cc
+Phobic.h
+/s/parsons/n/under/alyon/cs253/HW4/Phobic.h
+Phobic.h
+/s/parsons/n/under/alyon/cs253/HW4/Phobic.h
+iostream
+-
+cassert
+-
+stdexcept
+-
+

@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/s/parsons/n/under/alyon/cs253/HW6/Oval.h
+iostream
+-
+sstream
+-
+string
+-
+algorithm
+-
+vector
+-
+iterator
+-
+cassert
+-
+
+/s/parsons/n/under/alyon/cs253/HW6/test.cc
+Oval.h
+/s/parsons/n/under/alyon/cs253/HW6/Oval.h
+iostream
+-
+cassert
+-
+iostream
+-
+sstream
+-
+string
+-
+algorithm
+-
+

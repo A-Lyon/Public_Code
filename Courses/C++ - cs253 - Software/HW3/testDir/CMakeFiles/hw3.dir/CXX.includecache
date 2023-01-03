@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/s/parsons/n/under/alyon/cs253/HW3/testDir/main.cc
+iostream
+-
+string.h
+-
+cstring
+-
+string
+-
+cerrno
+-
+fstream
+-
+

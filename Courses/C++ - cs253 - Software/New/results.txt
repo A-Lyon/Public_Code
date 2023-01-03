@@ -1,0 +1,13 @@
+1. Glob.cc is using malloc to allocate memory, and malloc always returns a void*.
+2. a. The new method is only called when we create an object of type foo, so the new double does not use it.
+2. b. Static will allow the functions to be called when an object of the class has not been created yet.
+3. It cant compile. This happens because our new operator was made private in the class.
+4. It cant compile because we accientally set new to delete, which deletes it. If delete and equals operator or removed we compile.
+5. Protected functions in the base class become private in the derived classes, meaning they cannot be called from the derived class.
+6. The reinterpret_cast changed the type of z to a Foo* which bypassed the use of the new operator. This meant it made a Foo* pointing to the stack, which took the branch that caught that it was out of the memory range.
+7. Using the size of the type is a suffecient byte- value, because it will ensure you dont use more than you need, and will remove exactly what you use. i tried other sizes and it left memory un-free'd in valgrind.
+8. a. Foo is 8 bytes, but the addresses are 32 bytes apart, because new allocates more space than may be needed if not explicitely stated.
+   b. Bar is 8 bytes, and the addresses are 8 bytes  apart, because the new operator in this class assigns memory to the size_of type.
+9. No, I built the classes and the Foo::operator new is inaccessable to bar, and since bar is derived from Foo it will try and call Foo:    :operator new instead of the default new. We would need to build the operators inside Bar. 
+10. I was surprised to see that pool.cc ran about 4 times faster (at 0.05) vs normal.cc that ran in 0.19. Im assuming it is because new in pool.cc (while having a lot more code) isnt setting aside 8 bytes of memory per creation, whereas the creation of a double variable in normal.cc is taking longer.
+11. The ratio of time mirrored the ratio of memory used, and I think it is for a concurrent reason. Storing data takes time, so storing 4x as many kilobytes would require 4x as much time. 

@@ -1,0 +1,4 @@
+/s/parsons/n/under/alyon/cs253/HW3/testDir/CMakeFiles/edit_cache.dir
+/s/parsons/n/under/alyon/cs253/HW3/testDir/CMakeFiles/rebuild_cache.dir
+/s/parsons/n/under/alyon/cs253/HW3/testDir/CMakeFiles/hw3.dir
+/s/parsons/n/under/alyon/cs253/HW3/testDir/CMakeFiles/hw3.tar.dir

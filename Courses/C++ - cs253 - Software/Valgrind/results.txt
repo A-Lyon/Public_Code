@@ -1,0 +1,10 @@
+exp1: delete[ ] not called.
+exp2: index out of bounds for assignment of 'a', and no deletion prior to exit.
+exp3: x is uninitialized, so line 11 the conditional branch cannot execute.
+exp4: y is only initialized if now==0, so it cannot be used in a call to foo(y).
+exp5: trying to write to a memory location that is well outside of the stack size.
+exp6: Dangling pointer. Deleted the char[] before trying to output it. 
+exp7: p points to a char[] of 1000 locations, need to delete[] all of them to free the memory.
+exp8: Free doesnt change the val of a pointer, and only frees dynamically allocated memory. Use delete[] on this array.
+exp9: cannot delete an invalid pointer. After incrementing by 3, a points to the 3rd location in the array. 
+exp10: A logic problem, trying to store -10 as an unsigned int causes wrap-around.
