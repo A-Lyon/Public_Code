@@ -1,0 +1,10 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	Result            300F
+//	Loop              3005
+//	IntMul            3000
+//	LoopEnd           3009
+//	Param1            300D
+//	Param2            300E
