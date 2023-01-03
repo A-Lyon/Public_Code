@@ -1,0 +1,484 @@
+Score: 1.85/4.00 points
+Graded by Soumyadip Roy <Soumyadip.Roy@ColoState.Edu>
+
+Summary of all tests:
+  Value  Result  Test  Description
+   4.00  pass       1  unpack
+   4.00  pass       2  hw5 created
+   1.00  pass       3  no warnings
+   0.10  pass       4  -Wall used
+   0.05  pass       5  globals
+   0.05  pass       6  no external programs 
+   0.05  pass       7  no C I/O
+   0.05  pass       8  no malloc calloc realloc free stdrup
+   0.05  pass       9  No endl used
+   0.05  pass      10  no ASCII constants
+   0.05  FAIL      11  error message to standard error -c present twice
+   0.05  FAIL      12  error message must include program name
+   0.05  pass      13  error message with wrong option 
+   0.05  FAIL      14  error message with wrong argument 
+   0.05  pass      15  error message with upper range less than lower range
+   0.05  pass      16  error message with a range missing
+   0.05  pass      17  error message with upper limit not being an integer
+   0.05  FAIL      18  error message with input data not being integer
+   0.05  pass      19  error message with lower limit not being an integer
+   0.05  FAIL      20  error message with File p11 not being present
+   0.05  FAIL      21  error message with filenames before options
+   0.05  pass      22  error message with -c without implicit
+   0.05  pass      23  error message with invalid options attached to valid ones
+   0.05  FAIL      24  error message with input data not in range 
+   0.10  FAIL      25  Standard Input via file of positive number with only -r
+   0.10  FAIL      26  Input via echo of positive number with -r and  -f
+   0.10  FAIL      27  Single File input via command line argument of positive numbers with -s,-c
+   0.10  FAIL      28  Multiple File Input via command line argument  of positive numbers with -s, -v
+   0.10  FAIL      29  Standard Input via file of negative number with -r -f -s -c 
+   0.10  FAIL      30  Input via echo of negative number with -r
+   0.10  FAIL      31  Single File input via command line argument of negative numbers with -v
+   0.10  FAIL      32  Multiple File Input via command line argument  of negative numbers with -s
+   0.10  FAIL      33  Standard Input via file of both  positive and negative numbers with -r  -s
+   0.10  FAIL      34  Standard and command line input of files with positive and negative numbers with  -f, -r
+   0.10  FAIL      35  Input via echo of positive  and negative numbers with -f, -r
+   0.10  FAIL      36  command line input of two same files  with  -f, -r
+   0.10  FAIL      37  Single File input via command line argument of positive and negative  numbers with -r -v
+   0.20  FAIL      38  Multiple File Input via command line argument  of positive and negative numbers with -v, -f, -r
+   0.10  FAIL      39  Same Lower and Upper Limit with -r , -s
+   0.10  FAIL      40  Lower Limit being 0 with -r, -c
+   0.10  FAIL      41  Input with million file  
+   1.85                Total
+Passed 17 tests, failed 24 tests.
+
+Details of individual tests:
+
+Executing: tar -xvvf lyonandrew_LATE_32914_21489041_hw5.tar -C Build
+Exit code: 0
+Standard output, 3 lines:
+    -rwx------ alyon/under    5523 2021-11-07 21:48 main.cc
+    -rw------- alyon/under     240 2021-11-06 22:36 test.cc
+    -rw------- alyon/under     814 2021-11-06 10:18 CMakeLists.txt
+Standard error is empty
+
+Test 1: unpack
+Status: pass
+Condition: [[ -r Build/CMakeLists.txt ]]
+Value: 4.00
+
+Executing: export LANG=C; cmake . && make
+Exit code: 0
+Standard output, 21 lines:
+    -- The C compiler identification is GNU 8.4.1
+    -- The CXX compiler identification is GNU 8.4.1
+    -- Detecting C compiler ABI info
+    -- Detecting C compiler ABI info - done
+    -- Check for working C compiler: /usr/bin/cc - skipped
+    -- Detecting C compile features
+    -- Detecting C compile features - done
+    -- Detecting CXX compiler ABI info
+    -- Detecting CXX compiler ABI info - done
+    -- Check for working CXX compiler: /usr/bin/c++ - skipped
+	… and 11 more lines …
+Standard error is empty
+
+Test 2: hw5 created
+Status: pass
+Condition: [[ -r Build/hw5 ]]
+Value: 4.00
+
+Test 3: no warnings
+Status: pass
+Condition: ! grep -qi warning stdout stderr
+Value: 1.00
+
+Test 4: -Wall used
+Status: pass
+Condition: grep -q 'add_compile_options.*-Wall\b' Build/CMakeLists.txt
+Value: 0.10
+Contents of file Build/CMakeLists.txt, 23 lines:
+    cmake_minimum_required(VERSION 3.11)
+    project(hw5)
+     
+    if (CMAKE_SOURCE_DIR MATCHES "[Hh][Ww]([0-9])$"
+       AND NOT PROJECT_NAME MATCHES "${CMAKE_MATCH_1}$")
+        message(FATAL_ERROR "Building ${PROJECT_NAME} in ${CMAKE_SOURCE_DIR}")
+    endif()
+     
+    add_compile_options(-Wall)
+     
+	… and 13 more lines …
+
+Test 5: globals
+Status: pass
+Condition: No globals other than program_name
+Value: 0.05
+
+Test 6: no external programs 
+Status: pass
+Condition: Don’t use: system fork popen 'exec.*'
+Value: 0.05
+
+Test 7: no C I/O
+Status: pass
+Condition: Don’t use: '[fs]?(print|scan)f' puts fopen stdin stdout
+Value: 0.05
+
+Test 8: no malloc calloc realloc free stdrup
+Status: pass
+Condition: Don’t use: '(m|c|re)alloc' free strdup
+Value: 0.05
+
+Test 9: No endl used
+Status: pass
+Condition: ! grep -qi endl Build/hw5
+Value: 0.05
+
+Test 10: no ASCII constants
+Status: pass
+Condition: ! grep '\b[4-9]\d\b' Build/main.cc
+Value: 0.05
+
+Executing: echo '10' | Build/hw5 -c 'u' -c 'u' 
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 11: error message to standard error -c present twice
+Status: FAIL
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: cp Build/hw5 Build/howdy
+Exit code: 0
+Standard output and standard error are both empty
+
+Executing: echo '-10' | Build/howdy -r -10-5 -r -20-5
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 12: error message must include program name
+Status: FAIL
+Condition: grep -qi howdy stderr
+Value: 0.05
+
+Executing: echo '1000' | Build/hw5 -r 100-10000 -h 
+Exit code: 0
+Standard output is empty
+Standard error, one line:
+    Build/hw5: invalid option -- 'h'
+
+Test 13: error message with wrong option 
+Status: pass
+Condition: grep -qi h stderr
+Value: 0.05
+
+Executing: echo '50' | Build/hw5 -r 50 
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 14: error message with wrong argument 
+Status: FAIL
+Condition: grep -qi 50 stderr
+Value: 0.05
+
+Executing: echo '10' | Build/hw5 -r 100--100
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::bad_array_new_length'
+      what():  std::bad_array_new_length
+
+Test 15: error message with upper range less than lower range
+Status: pass
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 ' | Build/hw5 -r 0- 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 16: error message with a range missing
+Status: pass
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 11 20 ' | Build/hw5 -r10-a
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 17: error message with upper limit not being an integer
+Status: pass
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 a 20 ' | Build/hw5 
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 18: error message with input data not being integer
+Status: FAIL
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 11 20 ' | Build/hw5 -rb-5
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 19: error message with lower limit not being an integer
+Status: pass
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: Build/hw5 -r5-30 p11
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 20: error message with File p11 not being present
+Status: FAIL
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: Build/hw5 t1 -r5-30 
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 21: error message with filenames before options
+Status: FAIL
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 11 20 ' | Build/hw5 -c
+Exit code: 0
+Standard output is empty
+Standard error, one line:
+    Build/hw5: option requires an argument -- 'c'
+
+Test 22: error message with -c without implicit
+Status: pass
+Condition: grep -Pqz '\n\z' stderr
+Value: 0.05
+
+Executing: echo '10 11 20 ' | Build/hw5 -syo
+Exit code: 0
+Standard output, one line:
+    10,11,20
+Standard error, 2 lines:
+    Build/hw5: invalid option -- 'y'
+    Build/hw5: invalid option -- 'o'
+
+Test 23: error message with invalid options attached to valid ones
+Status: pass
+Condition: grep -Pqz '\n' stderr
+Value: 0.05
+
+Executing: echo '100000 11 20 ' | Build/hw5 
+Exit code: 1
+Standard output is empty
+Standard error, one line:
+    Error, value needs to be within range.
+
+Test 24: error message with input data not in range 
+Status: FAIL
+Condition: grep -qi 100000 stderr
+Value: 0.05
+
+Executing: Build/hw5 -r 10-20 < ~/Soumyadip/HW5grader/testcase/data1
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 25: Standard Input via file of positive number with only -r
+Status: FAIL
+Condition: exact '10x3 13x2 20x4\n10,10,10,13,13,20,20,20,20\n' stdout
+Value: 0.10
+
+Executing: echo 10 10 10 20 20 20 20 13 13 | Build/hw5 -fr10-20 
+Exit code: 0
+Standard output, one line:
+    10x3 13x2
+Standard error is empty
+
+Test 26: Input via echo of positive number with -r and  -f
+Status: FAIL
+Condition: exact '10x3 13x2 20x4\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -sc'#'   ~/Soumyadip/HW5grader/testcase/data2
+Exit code: 0
+Standard output, one line:
+    
+Standard error is empty
+
+Test 27: Single File input via command line argument of positive numbers with -s,-c
+Status: FAIL
+Condition: exact '20#20#20#20#20\n' stdout
+Value: 0.10
+
+Executing: Build/hw5  -s -v   ~/Soumyadip/HW5grader/testcase/data1  ~/Soumyadip/HW5grader/testcase/data2
+Exit code: 0
+Standard output, one line:
+    
+Standard error is empty
+
+Test 28: Multiple File Input via command line argument  of positive numbers with -s, -v
+Status: FAIL
+Condition: exact 'Reading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data1\nReading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data2\n10,10,10,13,13,20,20,20,20,20,20,20,20,20\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r -10--5 -f -s  -c '^' <  ~/Soumyadip/HW5grader/testcase/data3
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 29: Standard Input via file of negative number with -r -f -s -c 
+Status: FAIL
+Condition: exact '-10x1 -8x1 -7x1 -6x2 -5x1\n-10^-8^-7^-6^-6^-5\n' stdout
+Value: 0.10
+
+Executing: echo -7 -8 -7|Build/hw5 -r  -20--2 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 30: Input via echo of negative number with -r
+Status: FAIL
+Condition: exact '-8x1 -7x2\n-8,-7,-7\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-20--2 -v   ~/Soumyadip/HW5grader/testcase/data3
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 31: Single File input via command line argument of negative numbers with -v
+Status: FAIL
+Condition: exact 'Reading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data3\n-10x1 -8x1 -7x1 -6x2 -5x1\n-10,-8,-7,-6,-6,-5\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-2000--2 -s  ~/Soumyadip/HW3grader/testcase/data3  ~/Soumyadip/HW3grader/testcase/data4
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 32: Multiple File Input via command line argument  of negative numbers with -s
+Status: FAIL
+Condition: exact '-1001,-1000,-34,-34,-10,-8,-7,-6,-6,-5\n' stdout
+Value: 0.10
+
+Executing: Build/hw5  -s -r-10-20 <  ~/Soumyadip/HW5grader/testcase/data5
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 33: Standard Input via file of both  positive and negative numbers with -r  -s
+Status: FAIL
+Condition: exact '-9,-9,-8,5,6,6\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-10-20 -f  <  ~/Soumyadip/HW5grader/testcase/data5  ~/Soumyadip/HW5grader/testcase/data6  ~/Soumyadip/HW5grader/testcase/data7 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 34: Standard and command line input of files with positive and negative numbers with  -f, -r
+Status: FAIL
+Condition: exact '10x1 20x1\n' stdout
+Value: 0.10
+
+Executing: echo -9 -8 5 6 -9 6|Build/hw5 -f -r-10-20 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 35: Input via echo of positive  and negative numbers with -f, -r
+Status: FAIL
+Condition: exact '-9x2 -8x1 5x1 6x2\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-10-20 -f    ~/Soumyadip/HW5grader/testcase/data6  ~/Soumyadip/HW5grader/testcase/data6 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 36: command line input of two same files  with  -f, -r
+Status: FAIL
+Condition: exact '10x2\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-10-20 -v  ~/Soumyadip/HW5grader/testcase/data5
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 37: Single File input via command line argument of positive and negative  numbers with -r -v
+Status: FAIL
+Condition: exact 'Reading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data5\n-9x2 -8x1 5x1 6x2\n-9,-9,-8,5,6,6\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r-10-20 -fv    ~/Soumyadip/HW5grader/testcase/data5  ~/Soumyadip/HW5grader/testcase/data6  ~/Soumyadip/HW5grader/testcase/data7 
+Exit code: 134 (SIGABRT)
+Standard output is empty
+Standard error, 2 lines:
+    terminate called after throwing an instance of 'std::invalid_argument'
+      what():  stol
+
+Test 38: Multiple File Input via command line argument  of positive and negative numbers with -v, -f, -r
+Status: FAIL
+Condition: exact 'Reading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data5\nReading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data6\nReading from /s/bach/a/class/cs253/Soumyadip/HW5grader/testcase/data7\n-9x2 -8x1 5x1 6x2 10x1 20x1\n' stdout
+Value: 0.20
+
+Executing: Build/hw5 -sr20-20   ~/Soumyadip/HW5grader/testcase/data8
+Exit code: 0
+Standard output, one line:
+    
+Standard error is empty
+
+Test 39: Same Lower and Upper Limit with -r , -s
+Status: FAIL
+Condition: exact '20,20,20,20,20,20\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -r0-20 -c 'yo' <  ~/Soumyadip/HW5grader/testcase/data9
+Exit code: 0
+Standard output and standard error are both empty
+
+Test 40: Lower Limit being 0 with -r, -c
+Status: FAIL
+Condition: exact '0x2 12x1 13x1\n0yo0yo12yo13\n' stdout
+Value: 0.10
+
+Executing: Build/hw5 -fr1000000-1000999 ~/Soumyadip/HW5grader/testcase/million 
+Exit code: 0
+Standard output, one line:
+    
+Standard error is empty
+
+Test 41: Input with million file  
+Status: FAIL
+Condition: exact '1000001x499999 1000987x499999\n' stdout
+Value: 0.10

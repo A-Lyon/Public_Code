@@ -1,0 +1,597 @@
+Score: 3.80/4.00 points
+Graded by Soumyadip Roy <Soumyadip.Roy@ColoState.Edu>
+
+Summary of all tests:
+  Value  Result  Test  Description
+   4.00  pass       1  unpack
+   4.00  pass       2  test created
+   1.00  pass       3  no warnings
+   0.10  pass       4  -Wall used
+   0.10  pass       5  no C I/O
+   0.10  pass       6  no system calls
+   0.10  pass       7  no dynamic memory
+   0.10  pass       8  No endl used
+   0.05  pass       9  no .eof()
+   0.05  pass      10  no ASCII constants
+   0.10  pass      11  globals
+   0.05  pass      12  Default Contructor of int
+   0.10  pass      13  Contructor of int
+   0.05  pass      14  Copy Constructor for a vector of long
+   0.05  pass      15  Assignment operator for a vector of int
+   0.05  pass      16  Push_back of vector of int
+   0.05  pass      17  Erase function of vector of int
+   0.05  pass      18  Find function for an object of vector of int
+   0.05  pass      19  Size of non  const object of vector of ints
+   0.05  pass      20  Size of const object of vector of ints
+   0.05  pass      21  Size of non const object of vector of short
+   0.05  pass      22  Count of const object of vector of shorts
+   0.05  FAIL      23  Clear function of vector of shorts
+   0.05  pass      24  operator[] of const object of vector of shorts
+   0.05  pass      25  Operator[] of non const object of vector of shorts
+   0.05  pass      26  Find function on object of const vector of shorts
+   0.05  pass      27  Default Contructor of string
+   0.10  pass      28  Constructor for string
+   0.05  pass      29  copy constructor of string
+   0.05  pass      30  Assignment Operator of  string
+   0.05  pass      31  Erase of  string
+   0.05  pass      32  Push_back of  string 
+   0.05  pass      33  Find function of  string
+   0.05  pass      34  Find function of const string
+   0.05  pass      35  Size function of  a non const object of a   string
+   0.05  pass      36  Size function of  const object of a   string
+   0.05  pass      37  Erase function of an object of a   string
+   0.05  pass      38  Count function of non const object of a   string
+   0.05  pass      39  Count function of  const object of a   string
+   0.05  FAIL      40  Size function of non const object of a   string
+   0.05  pass      41  Operator [] of non  const object of a   string
+   0.05  pass      42  Operator [] of  const object of a   string
+   0.20  pass      43  Constructor for an object of linked list
+   0.05  pass      44  Find for an object of linked list
+   0.05  pass      45  count for a non const  object of linked list
+   0.05  pass      46  count for a const object of a linked list
+   0.10  pass      47  Erase for an object of linked list
+   0.10  FAIL      48  Clear for an object of linked list
+   0.10  pass      49  Size for a const object of linked list 
+   3.80                Total
+Passed 46 tests, failed 3 tests.
+
+Details of individual tests:
+
+Executing: tar -xvvf lyonandrew_LATE_32914_21674431_hw6-1.tar -C Build
+Exit code: 0
+Standard output, 3 lines:
+    -rw------- alyon/under    2330 2021-11-28 20:55 test.cc
+    -rw------- alyon/under    6843 2021-11-28 20:55 Oval.h
+    -rw------- alyon/under    1130 2021-11-24 18:26 CMakeLists.txt
+Standard error is empty
+
+Test 1: unpack
+Status: pass
+Condition: [[ -r Build/CMakeLists.txt ]]
+Value: 4.00
+
+Executing: cmake . && make
+Exit code: 0
+Standard output, 21 lines:
+    -- The C compiler identification is GNU 8.4.1
+    -- The CXX compiler identification is GNU 8.4.1
+    -- Detecting C compiler ABI info
+    -- Detecting C compiler ABI info - done
+    -- Check for working C compiler: /usr/bin/cc - skipped
+    -- Detecting C compile features
+    -- Detecting C compile features - done
+    -- Detecting CXX compiler ABI info
+    -- Detecting CXX compiler ABI info - done
+    -- Check for working CXX compiler: /usr/bin/c++ - skipped
+	… and 11 more lines …
+Standard error is empty
+
+Test 2: test created
+Status: pass
+Condition: [[ -r Build/test ]]
+Value: 4.00
+
+Test 3: no warnings
+Status: pass
+Condition: ! grep -qi warning stdout stderr
+Value: 1.00
+
+Test 4: -Wall used
+Status: pass
+Condition: grep -q '^[^#]*-Wall\b' Build/CMakeLists.txt
+Value: 0.10
+Contents of file Build/CMakeLists.txt, 31 lines, missing final newline, controls chars as \ooo (octal):
+    cmake_minimum_required(VERSION 3.11)\015
+    project(hw6)\015
+     \015
+    # Are we in the wrong directory?\015
+    if (CMAKE_SOURCE_DIR MATCHES "[Hh][Ww]([0-9])$"\015
+       AND NOT PROJECT_NAME MATCHES "${CMAKE_MATCH_1}$")\015
+        message(FATAL_ERROR "Building ${PROJECT_NAME} in ${CMAKE_SOURCE_DIR}")\015
+    endif()\015
+     \015
+    # Using -Wall is required:\015
+	… and 21 more lines …
+
+Test 5: no C I/O
+Status: pass
+Condition: Don’t use: printf scanf fopen
+Value: 0.10
+
+Test 6: no system calls
+Status: pass
+Condition: Don’t use: system fork popen execl execlp execle execv execvp execvpe
+Value: 0.10
+
+Test 7: no dynamic memory
+Status: pass
+Condition: Don’t use: new delete getchar malloc calloc realloc free strdup
+Value: 0.10
+
+Test 8: No endl used
+Status: pass
+Condition: ! grep -qi endl Build/test
+Value: 0.10
+
+Test 9: no .eof()
+Status: pass
+Condition: ! grep -Pq '\b(if|while)\s*\(.*\.eof\(\).*\)' Build/test
+Value: 0.05
+
+Test 10: no ASCII constants
+Status: pass
+Condition:
+Value: 0.05
+
+Test 11: globals
+Status: pass
+Condition: No globals used
+Value: 0.10
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t1.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 12: Default Contructor of int
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t2.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    40,50,60
+Standard error is empty
+
+Test 13: Contructor of int
+Status: pass
+Condition: exact '40,50,60\n' stdout
+Value: 0.10
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t3.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    4,5,6
+Standard error is empty
+
+Test 14: Copy Constructor for a vector of long
+Status: pass
+Condition: exact '4,5,6\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t4.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    4,5,6
+Standard error is empty
+
+Test 15: Assignment operator for a vector of int
+Status: pass
+Condition: exact '4,5,6\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t6.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    1,2,3,23
+Standard error is empty
+
+Test 16: Push_back of vector of int
+Status: pass
+Condition: exact '1,2,3,23\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t7.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    56,89
+Standard error is empty
+
+Test 17: Erase function of vector of int
+Status: pass
+Condition: exact '56,89\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t8.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 18: Find function for an object of vector of int
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t9.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 19: Size of non  const object of vector of ints
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t10.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 20: Size of const object of vector of ints
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t11.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 21: Size of non const object of vector of short
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t12.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 22: Count of const object of vector of shorts
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t13.cc  && ./a.out
+Exit code: 1
+Standard output is empty
+Standard error, 12 lines:
+    In file included from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t13.cc:1:
+    ./Oval.h: In instantiation of 'void Oval<T, shift, C>::clear() [with T = int; int shift = 1; C = std::equal_to<int>]':
+    /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t13.cc:34:13:   required from here
+    ./Oval.h:65:9: error: invalid use of non-static member function 'void std::vector<_Tp, _Alloc>::clear() [with _Tp = int; _Alloc = std::allocator<int>]'
+             oval.clear;
+             ^~~~
+    In file included from /usr/include/c++/8/vector:64,
+                     from ./Oval.h:8,
+                     from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t13.cc:1:
+    /usr/include/c++/8/bits/stl_vector.h:1385:7: note: declared here
+	… and 2 more lines …
+
+Test 23: Clear function of vector of shorts
+Status: FAIL
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t14.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 24: operator[] of const object of vector of shorts
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t15.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 25: Operator[] of non const object of vector of shorts
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t16.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 26: Find function on object of const vector of shorts
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t17.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 27: Default Contructor of string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t18.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    BONEhea
+Standard error is empty
+
+Test 28: Constructor for string
+Status: pass
+Condition: exact 'BONEhea\n' stdout
+Value: 0.10
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t19.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    BONEhea
+Standard error is empty
+
+Test 29: copy constructor of string
+Status: pass
+Condition: exact 'BONEhea\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t21.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 30: Assignment Operator of  string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t22.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 31: Erase of  string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t23.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 32: Push_back of  string 
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t24.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 33: Find function of  string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t25.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 34: Find function of const string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t26.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 35: Size function of  a non const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t27.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 36: Size function of  const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t28.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 37: Erase function of an object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t29.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 38: Count function of non const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t30.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 39: Count function of  const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t31.cc  && ./a.out
+Exit code: 1
+Standard output is empty
+Standard error, 12 lines:
+    In file included from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t31.cc:1:
+    ./Oval.h: In instantiation of 'void Oval<T, shift, C>::clear() [with T = char; int shift = 2; C = Fold]':
+    /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t31.cc:35:14:   required from here
+    ./Oval.h:65:9: error: invalid use of non-static member function 'void std::vector<_Tp, _Alloc>::clear() [with _Tp = char; _Alloc = std::allocator<char>]'
+             oval.clear;
+             ^~~~
+    In file included from /usr/include/c++/8/vector:64,
+                     from ./Oval.h:8,
+                     from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t31.cc:1:
+    /usr/include/c++/8/bits/stl_vector.h:1385:7: note: declared here
+	… and 2 more lines …
+
+Test 40: Size function of non const object of a   string
+Status: FAIL
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t32.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 41: Operator [] of non  const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t33.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 42: Operator [] of  const object of a   string
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t34.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    0,1,2,3
+Standard error is empty
+
+Test 43: Constructor for an object of linked list
+Status: pass
+Condition: exact '0,1,2,3\n' stdout
+Value: 0.20
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t35.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 44: Find for an object of linked list
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t36.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 45: count for a non const  object of linked list
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t37.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 46: count for a const object of a linked list
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.05
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t38.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 47: Erase for an object of linked list
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.10
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t39.cc  && ./a.out
+Exit code: 1
+Standard output is empty
+Standard error, 12 lines:
+    In file included from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t39.cc:1:
+    ./Oval.h: In instantiation of 'void Oval<T, shift, C>::clear() [with T = short int; int shift = 1; C = std::equal_to<short int>]':
+    /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t39.cc:28:13:   required from here
+    ./Oval.h:65:9: error: invalid use of non-static member function 'void std::vector<_Tp, _Alloc>::clear() [with _Tp = short int; _Alloc = std::allocator<short int>]'
+             oval.clear;
+             ^~~~
+    In file included from /usr/include/c++/8/vector:64,
+                     from ./Oval.h:8,
+                     from /s/bach/a/class/cs253/Soumyadip/HW6grader/testcase/t39.cc:1:
+    /usr/include/c++/8/bits/stl_vector.h:1385:7: note: declared here
+	… and 2 more lines …
+
+Test 48: Clear for an object of linked list
+Status: FAIL
+Condition: exact 'Hi\n' stdout
+Value: 0.10
+
+Executing: g++ -std=c++17 -Wall  -I. ~/Soumyadip/HW6grader/testcase/t40.cc  && ./a.out
+Exit code: 0
+Standard output, one line:
+    Hi
+Standard error is empty
+
+Test 49: Size for a const object of linked list 
+Status: pass
+Condition: exact 'Hi\n' stdout
+Value: 0.10

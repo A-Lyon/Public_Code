@@ -1,0 +1,132 @@
+Graded by Harsha<Sriharsha.Kathuroju@colostate.edu>
+
+0.6/1
+
+Q1 -0.1 (missing)
+Q2 -0.1 (logic error)
+Q3 -0.05 (consider 1e-5,2e-5)
+Q4 -0.15(missing)
+
+
+Your output:
+table[0] 0 85 70 55
+table[1] 51 36 21 6
+table[2] 17 2 87 72
+table[3] 68 53 38 23
+table[4] 34 19 4 89
+size=20: 0 85 70 55 51 36 21 6 17 2 87 72 68 53 38 23 34 19 4 89
+table[0] delta
+table[1] beta epsilon
+table[2] alpha eta
+table[3] zeta
+table[4] gamma
+size=7 delta beta epsilon alpha eta zeta gamma
+table[0] 1.5
+table[1] 1.1 1.6
+table[2] 1.2 1.7
+table[3] 1.3 1.8
+table[4] 1.4 1.9
+size=9: 1.5 1.1 1.6 1.2 1.7 1.3 1.8 1.4 1.9
+
+
+
+----------------EXAMPLE ANSWER 1-----------------
+template <typename T, int N = 5, typename H = Hasher>
+class hset {
+  private:
+    static constexpr unsigned table_size=N; // Exercise 1.
+    std::vector<std::list<T>> table;
+  public:
+	hset() : table(table_size) { }
+	[class methods...]
+}
+
+
+
+
+---------------EXAMPLE ANSWER 2--------------------------
+// hset.h public section:
+// Exercise 2
+    // Once we find a non-empty bucket, we know that
+    // the entire container is non-empty.
+    bool empty() const {
+	for (const auto &row : table) //CLASS MEMBER std::vector<std::list<T>> table;
+	    if (!row.empty())
+		return false;
+	return true;
+    }
+
+
+
+---------------EXAMPLE ANSWER 3-------------
+
+//main.cc
+    hset<double> ds;
+
+    for (double d=1.1; d<1.95; d+=0.1)
+	ds.insert(d);
+    ds.dump();
+    cout << "size=" << ds.size();
+    for (auto v : ds)
+	cout << ' ' << v;
+    cout << '\n';
+----
+// hasher.h
+    // Exercise 3
+    unsigned operator()(double d) const {
+	static_assert(sizeof(double) == sizeof(unsigned int) * 2,
+		      "double size must be twice unsigned size");
+	auto p = reinterpret_cast<unsigned int *>(&d);
+	return p[0] ^ p[1];
+    }
+
+----------------EXAMPLE ANSWER 4---------------------
+template <typename T>
+class hset_iter {
+  private:
+    using table_t = typename std::vector<std::list<T>>;
+    const table_t &parent;  // reference to the hash table we’re iterating over
+    size_t vindex, lindex;
+
+  public:
+    // We get an index into the vector.
+    // vindex==0 means begin()
+    // lindex==parent.size() means end()
+
+    hset_iter(const table_t &t, int ind) : parent(t), vindex(ind), lindex(0) {
+	forward();
+    }
+
+    bool operator==(const hset_iter &rhs) const {
+	return vindex == rhs.vindex && lindex == rhs.lindex;
+    }
+
+    bool operator!=(const hset_iter &rhs) const {
+	return !(*this == rhs);
+    }
+
+    T operator*() const {
+	auto list_iter = parent[vindex].begin();
+	advance(list_iter, lindex);  // go forward that many steps
+	return *list_iter;
+    }
+
+    // Pre-increment
+    void operator++() {
+	++lindex;
+	forward();
+    }
+
+  private:
+    // Here’s the problem: after incrementing, we go to the next list of
+    // buckets.  What if that list is empty?  We should skip it, and go
+    // to the next list, which may also be empty, etc., until we find
+    // a non-empty bucket list, or reach the end of the table.
+
+    void forward() {
+	while (vindex < parent.size() && lindex == parent[vindex].size()) {
+	    ++vindex;
+	    lindex = 0;
+	}
+    }
+};
