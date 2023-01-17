@@ -1,6 +1,6 @@
 # Public_Code
 Code for job applications
 
-This repository contains files written by me, that is available for review. These files will be in many programming languages. Files include different data structure implementations and test files for them mostly in java, unity projects written in C#, and some algorithms/ML files written in python.
+This repository contains files written by me, that are available for review only, and protected by Colorado State Universities intelectual property copyrite. Some files are generic homework assignments, some are projects for a research lab at CSUm, and some are screenshots of development engines like unity/unreal5. 
 
 Thank you for your interest.
